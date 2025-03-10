@@ -1,0 +1,24 @@
+# private
+.gitconfig
+.ssh
+
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Ruff
+.ruff_cache
+
+# Datasets
+datasets
+
+# Pytorch weights
+*.pt
+*.pth
