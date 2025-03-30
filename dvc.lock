@@ -1,0 +1,25 @@
+schema: '2.0'
+stages:
+  download@0:
+    cmd: "mkdir -p datasets\ncurl -L -o datasets/fog-detection-dataset.zip https://www.kaggle.com/api/v1/datasets/download/thaslimvs/fog-detection-dataset\n"
+    outs:
+    - path: datasets/fog-detection-dataset.zip
+      hash: md5
+      md5: 5250efc69c3e0d3a953561866f363aba
+      size: 128015030
+  download@1:
+    cmd: "mkdir -p datasets\ncurl -L -o datasets/fog-or-smog-detection-dataset.zip
+      https://www.kaggle.com/api/v1/datasets/download/ahmedislam0/fog-or-smog-detection-dataset\n"
+    outs:
+    - path: datasets/fog-or-smog-detection-dataset.zip
+      hash: md5
+      md5: ab50b93dc60f0fe92d80cddb69667711
+      size: 553302703
+  download@2:
+    cmd: "mkdir -p datasets\ncurl -L -o datasets/foggy-cityscapes-image-dataset.zip
+      https://www.kaggle.com/api/v1/datasets/download/yessicatuteja/foggy-cityscapes-image-dataset\n"
+    outs:
+    - path: datasets/foggy-cityscapes-image-dataset.zip
+      hash: md5
+      md5: 58fb1fdb97b43b46b93e20333d900dfc
+      size: 3171746124

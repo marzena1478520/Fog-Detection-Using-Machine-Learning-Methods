@@ -1,0 +1,37 @@
+stages:
+  download:
+    foreach:
+      - dataset_name: fog-detection-dataset
+        url: https://www.kaggle.com/api/v1/datasets/download/thaslimvs/fog-detection-dataset
+        outputfile: datasets/fog-detection-dataset.zip
+      - dataset_name: for-or-smog-detection-dataset
+        url: https://www.kaggle.com/api/v1/datasets/download/ahmedislam0/fog-or-smog-detection-dataset
+        outputfile: datasets/fog-or-smog-detection-dataset.zip
+      - dataset_name: foggy-cityscapes-image-dataset
+        url: https://www.kaggle.com/api/v1/datasets/download/yessicatuteja/foggy-cityscapes-image-dataset
+        outputfile: datasets/foggy-cityscapes-image-dataset.zip
+    do:
+      cmd: |
+        mkdir -p datasets
+        curl -L -o ${item.outputfile} ${item.url}
+      outs:
+        - ${item.outputfile}
+  unpack:
+    foreach:
+      - dataset_name: fog-detection-dataset
+        zipfile: datasets/fog-detection-dataset.zip
+        output_dir: datasets/fog-detection-dataset
+      - dataset_name: for-or-smog-detection-dataset
+        zipfile: datasets/fog-or-smog-detection-dataset.zip
+        output_dir: datasets/fog-or-smog-detection-dataset
+      - dataset_name: foggy-cityscapes-image-dataset
+        zipfile: datasets/foggy-cityscapes-image-dataset.zip
+        output_dir: datasets/foggy-cityscapes-image-dataset
+    do:
+      cmd: |
+        mkdir -p ${item.output_dir}
+        unzip -q ${item.zipfile} -d ${item.output_dir}
+      deps:
+        - ${item.zipfile}
+      outs:
+        - ${item.output_dir}
