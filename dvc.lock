@@ -23,3 +23,105 @@ stages:
       hash: md5
       md5: 58fb1fdb97b43b46b93e20333d900dfc
       size: 3171746124
+  unpack@0:
+    cmd: "mkdir -p datasets/fog-detection-dataset\nunzip -q datasets/fog-detection-dataset.zip
+      -d datasets/fog-detection-dataset\n"
+    deps:
+    - path: datasets/fog-detection-dataset.zip
+      hash: md5
+      md5: 5250efc69c3e0d3a953561866f363aba
+      size: 128015030
+    outs:
+    - path: datasets/fog-detection-dataset
+      hash: md5
+      md5: 1989918235a513c705f500c9b23333ce.dir
+      size: 129800774
+      nfiles: 527
+  unpack@1:
+    cmd: "mkdir -p datasets/fog-or-smog-detection-dataset\nunzip -q datasets/fog-or-smog-detection-dataset.zip
+      -d datasets/fog-or-smog-detection-dataset\n"
+    deps:
+    - path: datasets/fog-or-smog-detection-dataset.zip
+      hash: md5
+      md5: ab50b93dc60f0fe92d80cddb69667711
+      size: 553302703
+    outs:
+    - path: datasets/fog-or-smog-detection-dataset
+      hash: md5
+      md5: 9bef899a859df227ed1edd22aeba7544.dir
+      size: 554118768
+      nfiles: 2335
+  unpack@2:
+    cmd: "mkdir -p datasets/foggy-cityscapes-image-dataset\nunzip -q datasets/foggy-cityscapes-image-dataset.zip
+      -d datasets/foggy-cityscapes-image-dataset\n"
+    deps:
+    - path: datasets/foggy-cityscapes-image-dataset.zip
+      hash: md5
+      md5: 58fb1fdb97b43b46b93e20333d900dfc
+      size: 3171746124
+    outs:
+    - path: datasets/foggy-cityscapes-image-dataset
+      hash: md5
+      md5: 3dea1af7dac9796153cbf5be724c5eef.dir
+      size: 3170587398
+      nfiles: 1500
+  prepare@0:
+    cmd: uv run src/prepare_dataset.py --input_dir ./datasets/fog-detection-dataset/fog_dataset
+      --output_dir ./datasets/fog-detection-dataset-prepared --classes_mapping "--fog
+      images '^fog' --non-fog images '^clear'"
+    deps:
+    - path: ./datasets/fog-detection-dataset/fog_dataset
+      hash: md5
+      md5: 3f7c190820c955b7d362cd55481fd832.dir
+      size: 129800774
+      nfiles: 527
+    - path: src/prepare_dataset.py
+      hash: md5
+      md5: d33ce4901253ceb6d6d14374acb98db6
+      size: 2261
+    outs:
+    - path: ./datasets/fog-detection-dataset-prepared
+      hash: md5
+      md5: c1ed53efc63aaffd443950be8b0204a3.dir
+      size: 129800774
+      nfiles: 527
+  prepare@1:
+    cmd: uv run src/prepare_dataset.py --input_dir ./datasets/fog-or-smog-detection-dataset
+      --output_dir ./datasets/fog-or-smog-detection-dataset-prepared --classes_mapping
+      "--foggy '^fog' --Clear '^clear'"
+    deps:
+    - path: ./datasets/fog-or-smog-detection-dataset
+      hash: md5
+      md5: 9bef899a859df227ed1edd22aeba7544.dir
+      size: 554118768
+      nfiles: 2335
+    - path: src/prepare_dataset.py
+      hash: md5
+      md5: d33ce4901253ceb6d6d14374acb98db6
+      size: 2261
+    outs:
+    - path: ./datasets/fog-or-smog-detection-dataset-prepared
+      hash: md5
+      md5: 08914c657beccdb972b6f8823593de41.dir
+      size: 554118768
+      nfiles: 2335
+  prepare@2:
+    cmd: uv run src/prepare_dataset.py --input_dir ./datasets/foggy-cityscapes-image-dataset/Foggy_Cityscapes
+      --output_dir ./datasets/foggy-cityscapes-image-dataset-prepared --classes_mapping
+      "--Dense_Fog '^fog' --Medium_Fog '^fog' --No_Fog '^clear'"
+    deps:
+    - path: ./datasets/foggy-cityscapes-image-dataset/Foggy_Cityscapes
+      hash: md5
+      md5: 6f7469294aa41750a41c184bed068a2a.dir
+      size: 3170587398
+      nfiles: 1500
+    - path: src/prepare_dataset.py
+      hash: md5
+      md5: d33ce4901253ceb6d6d14374acb98db6
+      size: 2261
+    outs:
+    - path: ./datasets/foggy-cityscapes-image-dataset-prepared
+      hash: md5
+      md5: 8109b8eb4dd3ea150ee1afce90292741.dir
+      size: 2194713514
+      nfiles: 1000

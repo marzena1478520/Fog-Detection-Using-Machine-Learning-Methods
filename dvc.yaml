@@ -35,3 +35,34 @@ stages:
         - ${item.zipfile}
       outs:
         - ${item.output_dir}
+  prepare:
+    foreach:
+      - dataset_name: fog-detection-dataset
+        input_dir: ./datasets/fog-detection-dataset/fog_dataset
+        output_dir: ./datasets/fog-detection-dataset-prepared
+        classes_mapping:
+          "fog\ images": ^fog
+          "non-fog\ images": ^clear
+      - dataset_name: for-or-smog-detection-dataset
+        input_dir: ./datasets/fog-or-smog-detection-dataset
+        output_dir: ./datasets/fog-or-smog-detection-dataset-prepared
+        classes_mapping:
+          "foggy": ^fog
+          "Clear": ^clear
+      - dataset_name: foggy-cityscapes-image-dataset
+        input_dir: ./datasets/foggy-cityscapes-image-dataset/Foggy_Cityscapes
+        output_dir: ./datasets/foggy-cityscapes-image-dataset-prepared
+        classes_mapping:
+          "Dense_Fog": ^fog
+          "Medium_Fog": ^fog
+          "No_Fog": ^clear
+    do:
+      cmd: uv run src/prepare_dataset.py
+        --input_dir ${item.input_dir}
+        --output_dir ${item.output_dir}
+        --classes_mapping "${item.classes_mapping}"
+      deps:
+        - ${item.input_dir}
+        - src/prepare_dataset.py
+      outs:
+        - ${item.output_dir}
