@@ -1,0 +1,6 @@
+model_name: EfficientNet_B1
+num_classes: 2
+loss: null
+learning_rate: 0.0001
+optimizer_name: adam
+weights: EfficientNet_B1_Weights.DEFAULT

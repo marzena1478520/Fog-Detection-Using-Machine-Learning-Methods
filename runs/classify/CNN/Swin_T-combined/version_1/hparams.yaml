@@ -1,0 +1,6 @@
+model_name: Swin_T
+num_classes: 2
+loss: null
+learning_rate: 0.0001
+optimizer_name: adam
+weights: Swin_T_Weights.DEFAULT

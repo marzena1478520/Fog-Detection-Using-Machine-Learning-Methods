@@ -28,6 +28,7 @@ members = ["datasets/the-weather-scraper"]
 
 [dependency-groups]
 dev = [
+    "gdown>=5.2.0",
     "ipykernel>=6.29.5",
     "ruff>=0.9.10",
 ]
