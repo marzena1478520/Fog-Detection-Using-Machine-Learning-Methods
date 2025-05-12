@@ -19,8 +19,10 @@ wheels/
 
 # Datasets
 datasets
+tmp
 
 # Pytorch weights
 *.pt
 *.pth
 *.ckpt
+*.pypots
