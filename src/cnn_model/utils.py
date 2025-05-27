@@ -1,10 +1,7 @@
-import os
 from pathlib import Path
 from PIL import Image
 from typing import Any, Literal
-from time import time
 
-from prettytable import PrettyTable
 import skimage as ski
 import lightning as L
 import torch
@@ -12,7 +9,7 @@ import torch.nn as nn
 import torch.optim as optim
 from torch.utils.data import DataLoader
 import torchmetrics as tm
-from torchvision.models import get_model, get_weight
+from torchvision.models import get_model
 from torchvision.datasets import DatasetFolder
 
 

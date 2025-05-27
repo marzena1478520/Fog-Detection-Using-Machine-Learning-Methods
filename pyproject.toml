@@ -6,11 +6,13 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "dvc>=3.59.1",
+    "ipywidgets>=8.1.7",
     "lightning>=2.5.1",
     "prettytable>=3.16.0",
     "pypots>=0.18",
     "scikit-image>=0.25.2",
     "scikit-learn>=1.6.1",
+    "sweetviz>=2.3.1",
     "tensorboard>=2.19.0",
     "torch>=2.6.0",
     "torch-geometric>=2.6.1",
@@ -18,6 +20,7 @@ dependencies = [
     "torchvision>=0.21.0",
     "ultralytics>=8.3.86",
     "xgboost>=3.0.0",
+    "ydata-profiling>=4.16.1",
 ]
 
 [[tool.uv.index]]
